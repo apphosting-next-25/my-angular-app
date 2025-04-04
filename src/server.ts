@@ -7,6 +7,8 @@ import {
 import express from 'express';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { gemini20Flash, googleAI } from '@genkit-ai/googleai';
+import { genkit } from 'genkit';
 
 const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, '../browser');
@@ -14,17 +16,23 @@ const browserDistFolder = resolve(serverDistFolder, '../browser');
 const app = express();
 const angularApp = new AngularNodeAppEngine();
 
-/**
- * Example Express Rest API endpoints can be defined here.
- * Uncomment and define endpoints as necessary.
- *
- * Example:
- * ```ts
- * app.get('/api/**', (req, res) => {
- *   // Handle API request
- * });
- * ```
- */
+const ai = genkit({
+  plugins: [googleAI()],
+  model: gemini20Flash, // set default model
+});
+
+app.post('/api/gemini', async (req, res) => {
+  const prompt = req.body.prompt;
+
+  if (!prompt) {
+    res.json({ output: 'no prompt provided' });
+  } else {
+    console.log(`prompt: "${prompt}"`);
+    const { text } = await ai.generate('Hello, Gemini!');
+    console.log(text);
+    res.json({ output: text });
+  }
+});
 
 /**
  * Serve static files from /browser
