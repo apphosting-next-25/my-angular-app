@@ -21,6 +21,7 @@ const ai = genkit({
   model: gemini20Flash, // set default model
 });
 
+app.use(express.json());
 app.post('/api/gemini', async (req, res) => {
   const prompt = req.body.prompt;
 

@@ -11,6 +11,6 @@ export const appConfig: ApplicationConfig = {
     provideWindow(),
     // Drop the `withFetchMock` implementation argument in order to
     // perform actual network requests via the native Fetch API.
-    provideFetchApi(withFetchMock(geminiApiMock, { responseDelay: 2000 })),
+    provideFetchApi(),
   ],
 };
