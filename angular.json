@@ -49,7 +49,12 @@
             "outputMode": "server",
             "ssr": {
               "entry": "src/server.ts"
-            }
+            },
+            "externalDependencies": [
+              "@genkit-ai/firebase",
+              "@genkit-ai/googleai",
+              "genkit"
+            ]
           },
           "configurations": {
             "production": {
