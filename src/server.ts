@@ -31,7 +31,11 @@ app.post('/api/gemini', async (req, res) => {
     res.json({ output: 'no prompt provided' });
   } else {
     console.log(`prompt: "${prompt}"`);
-    const { text } = await ai.generate({prompt: prompt, system: "talk like a pirate"});
+    const { text } = await ai.generate({
+      prompt: prompt,
+      // set in apphosting.yaml
+      system: process.env['CHARACTER'],
+    });
     res.json({ output: text });
   }
 });
