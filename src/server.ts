@@ -9,6 +9,7 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { gemini20Flash, googleAI } from '@genkit-ai/googleai';
 import { genkit } from 'genkit';
+import { enableFirebaseTelemetry } from '@genkit-ai/firebase';
 
 const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, '../browser');
@@ -16,6 +17,7 @@ const browserDistFolder = resolve(serverDistFolder, '../browser');
 const app = express();
 const angularApp = new AngularNodeAppEngine();
 
+enableFirebaseTelemetry();
 const ai = genkit({
   plugins: [googleAI()],
   model: gemini20Flash, // set default model
