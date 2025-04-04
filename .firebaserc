@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "apphosting-next-2025"
-  }
+    "default": "apphosting-next-2025",
+    "demo": "apphosting-cloud-next-25"
+  },
+  "targets": {},
+  "etags": {}
 }
