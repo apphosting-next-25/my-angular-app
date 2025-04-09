@@ -7,7 +7,7 @@ env:
   - variable: GEMINI_API_KEY
     secret: GEMINI_API_KEY
   - variable: CHARACTER
-    value: "Talk like an elephant pretending to be human."
+    value: "Talk like a technical writer."
     availability:
       - BUILD
       - RUNTIME
